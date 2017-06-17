@@ -87,13 +87,14 @@ Add Consultation for Patient Visit
 					<form data-parsley-validate id="consult" action="{{route('visits.storelocal')}}" method="POST" data-toggle="validator">
 						{{csrf_field()}}
 						<input type="hidden" name="patient_id" value="{{$patient->id}}">
+						
 						<div class="row">
 							<div class="col-md-6 col-xs-12">
 								<div class="form-group {{ $errors->has('chiefcomplaints')?'has-error':''}}">
 									<label class="control-label" for="chiefcomplaints">Chief Complaints</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-										<textarea event.preventDefault(); style="text-transform: uppercase;resize:none;" autofocus=""  name="chiefcomplaints" id="chiefcomplaints" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Chief Complaints" required="">{{old('chiefcomplaints')}}</textarea>
+										<textarea event.preventDefault(); style="resize:none;text-transform: uppercase;" autofocus=""  name="chiefcomplaints" id="chiefcomplaints" class="form-control" cols="30" rows="3"  placeholder="Chief Complaints" required="">{{old('chiefcomplaints')}}</textarea>
 									</div>
 									<span class="help-block">{{$errors->first('chiefcomplaints')}}</span>
 								</div>
@@ -1209,6 +1210,15 @@ minimumInputLength: 3,
   //templateResult: formatRepo, // omitted for brevity, see the source of this page
   //templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
 });
+
+$( function() {
+    
+    $( "#chiefcomplaints" ).autocomplete({
+      // source: "http://localhost:8000/templates"
+      source: "{{route('templates.index')}}",
+      minLength: 3
+    });
+  } );
 
 
 

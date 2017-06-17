@@ -2,6 +2,7 @@
 <script src="{{asset('js/jquery-2.2.3.min.js')}}"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <!-- DataTables -->
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap.min.js')}}"></script>
@@ -26,6 +27,7 @@
 <script src="{{asset('js/lightbox.min.js')}}"></script>
 <script src="{{asset('js/moment.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+
 
 @yield('scripts')
 @yield('js')

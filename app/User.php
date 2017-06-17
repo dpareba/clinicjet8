@@ -66,4 +66,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Pathology');
     }
 
+       public function templates(){
+        return $this->hasMany('App\Template');
+   }
+
 }

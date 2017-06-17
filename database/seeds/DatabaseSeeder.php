@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
         DB::table('pageformats')->insert(['pageformat'=>'A4']);
         DB::table('pageformats')->insert(['pageformat'=>'A6']);
 
+        
+
         DB::table('specialities')->insert(['speciality'=>'ALLERGY & IMMUNOLOGY']);
         DB::table('specialities')->insert(['speciality'=>'ALTERNATIVE MEDICINE']);
         DB::table('specialities')->insert(['speciality'=>'ANATOMY & PHYSIOLOGY']);

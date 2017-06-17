@@ -25,9 +25,7 @@
   <link rel="stylesheet" href="{{asset('css/sweetalert.css')}}">
   <link rel="stylesheet" href="{{asset('css/lightbox.min.css')}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/all.css">
-
-
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
 
   @yield('stylesheets')
   @yield('css')
