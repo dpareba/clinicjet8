@@ -92,100 +92,110 @@ Add Consultation for Patient Visit
 							<div class="col-md-6 col-xs-12">
 								<div class="form-group {{ $errors->has('chiefcomplaints')?'has-error':''}}">
 									<label class="control-label" for="chiefcomplaints">Chief Complaints</label>
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-										<textarea event.preventDefault(); style="resize:none;text-transform: uppercase;" autofocus=""  name="chiefcomplaints" id="chiefcomplaints" class="form-control" cols="30" rows="3"  placeholder="Chief Complaints" required="">{{old('chiefcomplaints')}}</textarea>
-									</div>
-									<span class="help-block">{{$errors->first('chiefcomplaints')}}</span>
-								</div>
-							</div>
-							<div class="col-md-6 col-xs-12">
-								<div class="form-group {{ $errors->has('examinationfindings')?'has-error':''}}">
-									<label class="control-label" for="examinationfindings">Examination Findings</label>
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-										<textarea event.preventDefault(); style="text-transform: uppercase;resize: none;"  name="examinationfindings" id="examinationfindings" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Examination Findings" required="">{{old('examinationfindings')}}</textarea>
-									</div>
-									<span class="help-block">{{$errors->first('examinationfindings')}}</span>
-								</div>
-							</div>
-						</div>
-						<!-- /.row -->
-						<div class="row">
-							<div class="col-md-6 col-xs-12">
-								<div class="form-group {{ $errors->has('patienthistory')?'has-error':''}}">
-									<label class="control-label" for="patienthistory">History of Presenting Complaints</label>
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-										<textarea  event.preventDefault(); style="text-transform: uppercase;resize: none;" name="patienthistory" id="patienthistory" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Patient History" required="">{{old('patienthistory')}}</textarea>
-									</div>
-									<span class="help-block">{{$errors->first('patienthistory')}}</span>
-								</div>
-							</div>
-							<div class="col-md-6 col-xs-12">
-								<div class="form-group {{ $errors->has('diagnosis')?'has-error':''}}">
-									<label class="control-label" for="diagnosis">Diagnosis</label>
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-										<textarea event.preventDefault(); style="text-transform: uppercase; resize: none;"  name="diagnosis" id="diagnosis" class="form-control" cols="30" rows="3" placeholder="Diagnosis" required="">{{old('diagnosis')}}</textarea>
-									</div>
-									<span class="help-block">{{$errors->first('diagnosis')}}</span>
-								</div>
-							</div>
-						</div>
-						{{-- .row --}}
-						<div class="row">
-							<div class="col-md-6 col-xs-12">
-								<div class="form-group {{ $errors->has('advise')?'has-error':''}}">
-									<label class="control-label" for="advise">Advise</label>
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-										<textarea event.preventDefault(); style="text-transform: uppercase;resize: none;" name="advise" id="advise" class="form-control" cols="30" rows="3"  placeholder="Advise" required="">{{old('advise')}}</textarea>
-									</div>
-									<span class="help-block">{{$errors->first('advise')}}</span>
-								</div>
-							</div>
-							
-							<div class="col-md-2 col-xs-12">
-								<div class="form-group {{ $errors->has('followuptype')?'has-error':''}}">
-									<label class="control-label" for="followuptype">Follow up</label>
-									<select name="followuptype" id="followuptype" class="js-example-basic-single form-control">
-										<option value="SOS">SOS</option>
-										<option value="Days" >Days</option>
-										<option value="Months" >Months</option>
-									</select>
-									<span class="help-block">{{$errors->first('followuptype')}}</span>
-								</div>
-							</div>
-							<div class="col-md-1 col-xs-12">
-								<div class="form-group  {{ $errors->has('numdays')?'has-error':''}}">
-									<label class="control-label" id="numdayslabel" for="numdays"></label>
-									<select name="numdays" id="numdays" class="js-example-basic-single form-control">
-										{{-- appending values between 1 and 31 using jquery --}}
-									</select>
-									<span class="help-block">{{$errors->first('numdays')}}</span>
-								</div>
-							</div>
-							<div class="col-md-3 col-xs-12">
-								<div class="form-group ">
-									<label class="control-label" id="nextvisitlabel" for="nextvisit">Follow up on(dd/mm/yyyy)</label>
-									<input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask name="nextvisit" id="nextvisit">
-								</div>
-							</div>
-
-						</div>
-						{{-- .row --}}
-						<hr>
-
-						<div class="row">
-							<div class="col-md-6 col-xs-12">
-								<div class="form-group {{ $errors->has('pathology')?'has-error':''}}">
-									<label class="control-label" for="pathology">Recommended Clinical Follow up</label>
 									<div class="pull-right box-tools">
-										<a type="button" id="addpath" class="btn btn btn-sm" style="color: gray;" data-toggle="modal" data-target="#myPathModal">
+										{{-- <a href="" type="button" id="ccadd" style="color: gray;" data-toggle="modal" da><i class="fa fa-plus"></i></a> --}}
+										<a type="button" id="addcc" href="" style="color: gray;" data-toggle="modal" data-target="#ccModal">
 											<i class="fa fa-plus"></i></a>
 										</div>
-										<select name="pathology[]" id="pathology" class="js-example-basic-multiple  form-control" multiple="multiple">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+											<textarea event.preventDefault(); style="resize:none;text-transform: uppercase;" autofocus=""  name="chiefcomplaints" id="chiefcomplaints" class="form-control" cols="30" rows="3"  placeholder="Chief Complaints" required="">{{old('chiefcomplaints')}}</textarea>
+										</div>
+										<span class="help-block">{{$errors->first('chiefcomplaints')}}</span>
+									</div>
+								</div>
+								<div class="col-md-6 col-xs-12">
+									<div class="form-group {{ $errors->has('examinationfindings')?'has-error':''}}">
+										<label class="control-label" for="examinationfindings">Examination Findings</label>
+										<div class="pull-right box-tools">
+										{{-- <a href="" type="button" id="ccadd" style="color: gray;" data-toggle="modal" da><i class="fa fa-plus"></i></a> --}}
+										<a type="button" id="addef" href="" style="color: gray;" data-toggle="modal" data-target="#efModal">
+											<i class="fa fa-plus"></i></a>
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+											<textarea event.preventDefault(); style="text-transform: uppercase;resize: none;"  name="examinationfindings" id="examinationfindings" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Examination Findings" required="">{{old('examinationfindings')}}</textarea>
+										</div>
+										<span class="help-block">{{$errors->first('examinationfindings')}}</span>
+									</div>
+								</div>
+							</div>
+							<!-- /.row -->
+							<div class="row">
+								<div class="col-md-6 col-xs-12">
+									<div class="form-group {{ $errors->has('patienthistory')?'has-error':''}}">
+										<label class="control-label" for="patienthistory">History of Presenting Complaints</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+											<textarea  event.preventDefault(); style="text-transform: uppercase;resize: none;" name="patienthistory" id="patienthistory" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Patient History" required="">{{old('patienthistory')}}</textarea>
+										</div>
+										<span class="help-block">{{$errors->first('patienthistory')}}</span>
+									</div>
+								</div>
+								<div class="col-md-6 col-xs-12">
+									<div class="form-group {{ $errors->has('diagnosis')?'has-error':''}}">
+										<label class="control-label" for="diagnosis">Diagnosis</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+											<textarea event.preventDefault(); style="text-transform: uppercase; resize: none;"  name="diagnosis" id="diagnosis" class="form-control" cols="30" rows="3" placeholder="Diagnosis" required="">{{old('diagnosis')}}</textarea>
+										</div>
+										<span class="help-block">{{$errors->first('diagnosis')}}</span>
+									</div>
+								</div>
+							</div>
+							{{-- .row --}}
+							<div class="row">
+								<div class="col-md-6 col-xs-12">
+									<div class="form-group {{ $errors->has('advise')?'has-error':''}}">
+										<label class="control-label" for="advise">Advise</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+											<textarea event.preventDefault(); style="text-transform: uppercase;resize: none;" name="advise" id="advise" class="form-control" cols="30" rows="3"  placeholder="Advise" required="">{{old('advise')}}</textarea>
+										</div>
+										<span class="help-block">{{$errors->first('advise')}}</span>
+									</div>
+								</div>
+
+								<div class="col-md-2 col-xs-12">
+									<div class="form-group {{ $errors->has('followuptype')?'has-error':''}}">
+										<label class="control-label" for="followuptype">Follow up</label>
+										<select name="followuptype" id="followuptype" class="js-example-basic-single form-control">
+											<option value="SOS">SOS</option>
+											<option value="Days" >Days</option>
+											<option value="Months" >Months</option>
+										</select>
+										<span class="help-block">{{$errors->first('followuptype')}}</span>
+									</div>
+								</div>
+								<div class="col-md-1 col-xs-12">
+									<div class="form-group  {{ $errors->has('numdays')?'has-error':''}}">
+										<label class="control-label" id="numdayslabel" for="numdays"></label>
+										<select name="numdays" id="numdays" class="js-example-basic-single form-control">
+											{{-- appending values between 1 and 31 using jquery --}}
+										</select>
+										<span class="help-block">{{$errors->first('numdays')}}</span>
+									</div>
+								</div>
+								<div class="col-md-3 col-xs-12">
+									<div class="form-group ">
+										<label class="control-label" id="nextvisitlabel" for="nextvisit">Follow up on(dd/mm/yyyy)</label>
+										<input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask name="nextvisit" id="nextvisit">
+									</div>
+								</div>
+
+							</div>
+							{{-- .row --}}
+							<hr>
+
+							<div class="row">
+								<div class="col-md-6 col-xs-12">
+									<div class="form-group {{ $errors->has('pathology')?'has-error':''}}">
+										<label class="control-label" for="pathology">Recommended Clinical Follow up</label>
+										<div class="pull-right box-tools">
+											<a type="button" id="addpath" class="btn btn btn-sm" style="color: gray;" data-toggle="modal" data-target="#myPathModal">
+												<i class="fa fa-plus"></i></a>
+											</div>
+											<select name="pathology[]" id="pathology" class="js-example-basic-multiple  form-control" multiple="multiple">
 											{{-- @foreach ($pathologies as $pathology)
 											<option value="{{$pathology->id}}">{{$pathology->name}}</option>
 											@endforeach --}}
@@ -614,7 +624,7 @@ Add Consultation for Patient Visit
 												<br>
 												@endif
 
-																						
+
 												<dl>
 													<dt>Recommended Clinical Followup</dt>
 													<ul>
@@ -767,6 +777,52 @@ Add Consultation for Patient Visit
 											<div class="modal-footer">
 												<button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
 												<button type="submit" id="addpathology" class="btn btn-outline">Save changes</button>
+											</div>
+										</form>
+									</div>
+									<!-- /.modal-content -->
+								</div>
+								<!-- /.modal-dialog -->
+							</div>
+							<!-- /.modal -->
+						</div>
+						<!-- /.example-modal -->
+
+						{{-- ccModal --}}
+						<div class="example-modal">
+						<div class="modal modal-primary" id="ccModal">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title">Add Chief Investigation Template</h4>
+										</div>
+										<div class="modal-body">
+											<form data-parsley-validate class="formcc" action="#" method=""  enctype="multipart/form-data" >
+												{{csrf_field()}}
+												<div id="templatename-error-label" class="form-group ">
+													<label class="control-label" for="templatename">Template Name</label>
+													<div class="input-group">
+														<span class="input-group-addon"><i class="fa fa-plus-square"></i></span>
+														<input event.preventDefault(); autofocus="" type="text" name="templatename" style="text-transform: uppercase;" id="templatename" class="form-control">
+													</div>
+													<span id="templatename-error" class="help-block"></span>
+												</div>
+												
+												<div id="template-error-label" class="form-group ">
+													<label class="control-label" for="template">Template</label>
+													<div class="input-group">
+														<span class="input-group-addon"><i class="fa fa-plus-square"></i></span>
+														<textarea event.preventDefault(); class="form-control" style="text-transform: uppercase;" id="template" name="template" id="template" cols="30" rows="5"></textarea>
+														
+													</div>
+													<span id="template-error" class="help-block"></span>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+												<button type="submit" id="addcctemplate" class="btn btn-outline">Save changes</button>
 											</div>
 										</form>
 									</div>
@@ -1212,13 +1268,13 @@ minimumInputLength: 3,
 });
 
 $( function() {
-    
-    $( "#chiefcomplaints" ).autocomplete({
+
+	$( "#chiefcomplaints" ).autocomplete({
       // source: "http://localhost:8000/templates"
-      source: "{{route('templates.index')}}",
+      source: "{{route('templates.showcc')}}",
       minLength: 3
-    });
-  } );
+  });
+} );
 
 
 
@@ -1381,6 +1437,30 @@ $('#addpathology').click(function(e){
 		}
 	});
 	//return false;
+});
+
+$('#addcctemplate').click(function(e){
+	e.preventDefault();
+	$.ajax({
+		type: "POST",
+		url : "/storecc",
+		data: $("form.formcc").serialize(),
+		success:function(response){
+			$("#ccModal").modal('hide');
+		},
+		error:function(data){
+			console.log(data.responseText);
+			var obj = jQuery.parseJSON(data.responseText);
+			if (obj.templatename) {
+				$("#templatename-error-label").addClass("has-warning");
+				$('#templatename-error').html(obj.templatename);
+			}
+			if (obj.template) {
+				$("#template-error-label").addClass("has-warning");
+				$('#template-error').html(obj.template);
+			}
+		}
+	});
 });
 
 // $("#addpath").click(function(e){

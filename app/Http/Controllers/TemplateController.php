@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Template;
 use Auth;
+use Illuminate\Support\Str; //Added
+use Session;
 
 class TemplateController extends Controller
 {
@@ -19,12 +21,15 @@ class TemplateController extends Controller
      */
     public function index(Request $request)
     {
-    
-    $term = $request->term;
-    $templates = Template::where('template','LIKE','%'.$term.'%')->where('templatetype','=','cc')->where('user_id','=',Auth::user()->id)->get();
-    //return $template;
-    
-    if (count($templates)==0) {
+
+
+    }
+
+    public function showcc(Request $request){
+       $term = $request->term;
+       $templates = Template::where('template','LIKE','%'.$term.'%')->where('templatetype','=','CC')->where('user_id','=',Auth::user()->id)->get();
+
+       if (count($templates)==0) {
         $searchResult[] = "No Templates Found";
     }else{
         foreach ($templates as $t) {
@@ -32,14 +37,44 @@ class TemplateController extends Controller
         }
     }
     return $searchResult;
+}
 
-    // return $availableTags = [
-    // "GENERAL PHYSICAL EXAMINATION: PULSE RATE: 84 / MIN. BLOOD PRESSURE: 130/80 MM HG RIGHT ARM SUPINE POSITION TEMP: NORMAL (AFEBRILE) WEIGHT: 64 KG WELL BUILT, WELL NOURISHED. NO PALLOR, ICTERUS, LYMPHADENOPATHY, RASHES, CYANOSIS OR CLUBBING. PEDAL EDEMA: CVS/RS/PA/CNS: WNL",
-    // "MIDDLE AGED MALE KNOWN CASE OF TYPE 2 DIABETES MELLITUS AND HYPERTENSION CAME FOR FOLLOW UP.",
-    // $term
-    // ];
-    
+    public function storecc(Request $request){
+
+        $this->validate($request,[
+            'templatename'=>'required|unique:templates,templatename',
+            'template'=>'required|unique:templates,template'
+            ],[
+            'templatename.required'=>'Template Name cannot be left blank',
+            'templatename.unique'=>'A Template by this name already exists',
+            'template.required'=>'New Template cannot be left blank',
+            'template.unique'=>'This Template alredy exists'
+            ]);
+
+        $template = new Template;
+        $template->templatename = Str::upper($request->templatename);
+        $template->templatetype = "CC";
+        $template->template = Str::upper($request->template);
+        $template->user_id = Auth::user()->id;
+
+        $template->save();
+
+       
     }
+
+    public function showef(Request $request){
+       $term = $request->term;
+       $templates = Template::where('template','LIKE','%'.$term.'%')->where('templatetype','=','EF')->where('user_id','=',Auth::user()->id)->get();
+
+       if (count($templates)==0) {
+        $searchResult[] = "No Templates Found";
+    }else{
+        foreach ($templates as $t) {
+            $searchResult[] = $t->template;
+        }
+    }
+    return $searchResult;
+}
 
     /**
      * Show the form for creating a new resource.

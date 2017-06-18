@@ -139,6 +139,16 @@ Route::resource('pathologies','PathologyController');
 
 Route::resource('templates','TemplateController');
 
+Route::get('showcc',[
+	'as'=>'templates.showcc',
+	'uses'=>'TemplateController@showcc'
+	]);
+
+Route::post('storecc',[
+	'as'=>'templates.storecc',
+	'uses'=>'TemplateController@storecc'
+	]);
+
 Route::resource('tests','TestController');
 
 
