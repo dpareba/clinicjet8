@@ -76,6 +76,29 @@ class TemplateController extends Controller
     return $searchResult;
 }
 
+public function storeef(Request $request){
+
+        $this->validate($request,[
+            'templatenameef'=>'required|unique:templates,templatename',
+            'templateef'=>'required|unique:templates,template'
+            ],[
+            'templatenameef.required'=>'Template Name cannot be left blank',
+            'templatenameef.unique'=>'A Template by this name already exists',
+            'templateef.required'=>'New Template cannot be left blank',
+            'templateef.unique'=>'This Template alredy exists'
+            ]);
+
+        $template = new Template;
+        $template->templatename = Str::upper($request->templatenameef);
+        $template->templatetype = "EF";
+        $template->template = Str::upper($request->templateef);
+        $template->user_id = Auth::user()->id;
+
+        $template->save();
+
+       
+    }
+
     /**
      * Show the form for creating a new resource.
      *

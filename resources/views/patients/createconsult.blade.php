@@ -802,7 +802,7 @@ Add Consultation for Patient Visit
 											<form data-parsley-validate class="formcc" action="#" method=""  enctype="multipart/form-data" >
 												{{csrf_field()}}
 												<div id="templatename-error-label" class="form-group ">
-													<label class="control-label" for="templatename">Template Name</label>
+													<label class="control-label" for="templatename">Chief Complaint Template Name</label>
 													<div class="input-group">
 														<span class="input-group-addon"><i class="fa fa-plus-square"></i></span>
 														<input event.preventDefault(); autofocus="" type="text" name="templatename" style="text-transform: uppercase;" id="templatename" class="form-control">
@@ -811,7 +811,7 @@ Add Consultation for Patient Visit
 												</div>
 												
 												<div id="template-error-label" class="form-group ">
-													<label class="control-label" for="template">Template</label>
+													<label class="control-label" for="template">Chief Complaint Template</label>
 													<div class="input-group">
 														<span class="input-group-addon"><i class="fa fa-plus-square"></i></span>
 														<textarea event.preventDefault(); class="form-control" style="text-transform: uppercase;" id="template" name="template" id="template" cols="30" rows="5"></textarea>
@@ -823,6 +823,51 @@ Add Consultation for Patient Visit
 											<div class="modal-footer">
 												<button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
 												<button type="submit" id="addcctemplate" class="btn btn-outline">Save changes</button>
+											</div>
+										</form>
+									</div>
+									<!-- /.modal-content -->
+								</div>
+								<!-- /.modal-dialog -->
+							</div>
+							<!-- /.modal -->
+						</div>
+						<!-- /.example-modal -->
+
+						<div class="example-modal">
+						<div class="modal modal-primary" id="efModal">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title">Add Examination Findings Template</h4>
+										</div>
+										<div class="modal-body">
+											<form data-parsley-validate class="formef" action="#" method=""  enctype="multipart/form-data" >
+												{{csrf_field()}}
+												<div id="templatenameef-error-label" class="form-group ">
+													<label class="control-label" for="templatenameef">Examination Findings Template Name</label>
+													<div class="input-group">
+														<span class="input-group-addon"><i class="fa fa-plus-square"></i></span>
+														<input event.preventDefault(); autofocus="" type="text" name="templatenameef" style="text-transform: uppercase;" id="templatenameef" class="form-control">
+													</div>
+													<span id="templatenameef-error" class="help-block"></span>
+												</div>
+												
+												<div id="templateef-error-label" class="form-group ">
+													<label class="control-label" for="templateef">Examination Findings Template</label>
+													<div class="input-group">
+														<span class="input-group-addon"><i class="fa fa-plus-square"></i></span>
+														<textarea event.preventDefault(); class="form-control" style="text-transform: uppercase;" id="templateef" name="templateef" id="templateef" cols="30" rows="5"></textarea>
+														
+													</div>
+													<span id="templateef-error" class="help-block"></span>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+												<button type="submit" id="addeftemplate" class="btn btn-outline">Save changes</button>
 											</div>
 										</form>
 									</div>
@@ -1276,6 +1321,13 @@ $( function() {
   });
 } );
 
+$(function(){
+	$("#examinationfindings").autocomplete({
+		source: "{{route('templates.showef')}}",
+		minLength: 3
+	});
+});
+
 
 
 $("#bbb").click(function(){
@@ -1458,6 +1510,29 @@ $('#addcctemplate').click(function(e){
 			if (obj.template) {
 				$("#template-error-label").addClass("has-warning");
 				$('#template-error').html(obj.template);
+			}
+		}
+	});
+});
+
+$('#addeftemplate').click(function(e){
+	e.preventDefault();
+	$.ajax({
+		type: "POST",
+		url: "/storeef",
+		data: $("form.formef").serialize(),
+		success: function(response){
+			$("#efModal").modal('hide');
+		},
+		error: function(data){
+			var obj = jQuery.parseJSON(data.responseText);
+			if(obj.templatenameef){
+				$("#templatenameef-error-label").addClass("has-warning");
+				$('#templatenameef-error').html(obj.templatenameef);
+			}
+			if (obj.templateef) {
+				$("#templateef-error-label").addClass("has-warning");
+				$('#templateef-error').html(obj.templateef);
 			}
 		}
 	});

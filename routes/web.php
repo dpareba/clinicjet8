@@ -144,9 +144,19 @@ Route::get('showcc',[
 	'uses'=>'TemplateController@showcc'
 	]);
 
+Route::get('showef',[
+	'as'=>'templates.showef',
+	'uses'=>'TemplateController@showef'
+	]);
+
 Route::post('storecc',[
 	'as'=>'templates.storecc',
 	'uses'=>'TemplateController@storecc'
+	]);
+
+Route::post('storeef',[
+	'as'=>'templates.storeef',
+	'uses'=>'TemplateController@storeef'
 	]);
 
 Route::resource('tests','TestController');
